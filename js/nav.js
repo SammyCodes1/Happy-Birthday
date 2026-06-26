@@ -21,8 +21,32 @@
     document.body.style.overflow = open ? "hidden" : "";
   };
 
+  const scrollToHashTarget = () => {
+    if (!window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (!target) return;
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  };
+
   toggle?.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
-  menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+  menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", (event) => {
+    setMenu(false);
+
+    const destination = new URL(link.href, window.location.href);
+    const samePage = destination.origin === window.location.origin && destination.pathname === window.location.pathname;
+
+    if (samePage && destination.hash) {
+      event.preventDefault();
+      history.pushState(null, "", destination.hash);
+      scrollToHashTarget();
+    }
+  }));
+
+  window.addEventListener("pageIntroComplete", scrollToHashTarget);
+  window.addEventListener("load", scrollToHashTarget);
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenu(false);
   });
