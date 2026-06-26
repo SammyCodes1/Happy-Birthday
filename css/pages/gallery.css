@@ -1,4 +1,9 @@
-.gallery-hero { min-height:72svh; background:var(--midnight); }
+.gallery-hero {
+  min-height:72svh;
+  background:
+    linear-gradient(to bottom, rgba(10,10,15,.55), rgba(10,10,15,.9)),
+    url("../../assets/images/Frame%20Of%20Grace.jpg") center 12% / cover no-repeat;
+}
 .gallery-hero__rule { width:min(580px,100%); height:1px; margin-top:36px; background:var(--gold); transform-origin:center; }
 .gallery-hero h1 { font-size:var(--text-hero); }
 .gallery-hero p { color:var(--gold); font-family:var(--accent); font-size:var(--text-2xl); font-style:italic; }
@@ -43,6 +48,10 @@
 @media(max-width:768px){
   .bento { grid-template-columns:1fr 1fr; grid-auto-rows:140px; gap:10px; }
   .bento__caption { opacity:1; transform:none; font-size:var(--text-base); }
+  .gallery-hero {
+    background-position:center, center 18%;
+    background-size:auto, auto 125%;
+  }
   .gallery-hero p { font-size:var(--text-xl); }
   .lightbox__figure { width:min(900px,96vw); }
   .lightbox__visual { height:min(60vh,500px); }
@@ -59,6 +68,10 @@
 
 /* Small phones */
 @media(max-width:480px){
+  .gallery-hero {
+    background-position:center, center 16%;
+    background-size:auto, auto 130%;
+  }
   .bento { grid-template-columns:1fr; grid-auto-rows:200px; }
   .bento__item:nth-child(n) { grid-column:span 1; grid-row:span 1; }
   .polaroids { gap:20px; }
