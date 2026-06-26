@@ -148,7 +148,24 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const wishHtml = paintGoldPhrases(data.wish, isHusbandWish);
 
-    card.innerHTML = `
+    card.innerHTML = isHusbandWish ? `
+      <div class="wish-card__body">
+        <div class="wish-card__copy">
+          <div class="wish-card__head">
+            <h3>${escHtml(data.name)}</h3>
+            <span class="wish-badge">${escHtml(relationship)}</span>
+          </div>
+          <p style="white-space: pre-wrap;">"${wishHtml}"</p>
+        </div>
+        <figure class="wish-card__photo-frame">
+          <img src="assets/images/Psalmist.jpg" alt="Pastor Emmanuel Omhonria" loading="lazy">
+          <figcaption>
+            <strong>Pastor Emmanuel Omhonria</strong>
+            <span>PRESIDENT, PSALMIST NATION TABERNACLE.</span>
+          </figcaption>
+        </figure>
+      </div>
+    ` : `
       <div class="wish-card__head">
         <h3>${escHtml(data.name)}</h3>
         <span class="wish-badge">${escHtml(relationship)}</span>
