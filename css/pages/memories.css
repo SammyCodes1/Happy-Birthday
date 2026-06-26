@@ -1,0 +1,60 @@
+.memories-hero h1 { max-width:1000px; font-size:clamp(3.8rem,9vw,8rem); }
+.memory-list { display:flex; flex-direction:column; gap:28px; }
+.memory-feature { position:relative; display:grid; grid-template-columns:220px 1fr; gap:52px; align-items:center; min-height:360px; padding:clamp(34px,6vw,72px); overflow:hidden; border:1px solid rgba(201,168,76,.14); border-radius:var(--radius-lg); background:var(--obsidian); }
+.memory-feature:nth-child(even) { grid-template-columns:1fr 220px; background:linear-gradient(135deg,var(--velvet),var(--obsidian)); }
+.memory-feature:nth-child(even) .memory-profile { grid-column:2; grid-row:1; }
+.memory-feature__mark { position:absolute; top:-48px; right:30px; color:var(--gold); font-family:var(--accent); font-size:14rem; opacity:.1; }
+.memory-profile { text-align:center; }
+.memory-profile__image { display:block; width:150px; height:150px; margin:0 auto 20px; border:1px solid var(--gold); border-radius:50%; object-fit:cover; background:radial-gradient(circle at 65% 25%,rgba(232,160,191,.25),transparent 22%),linear-gradient(145deg,#302038,#12121a); }
+.memory-profile h3 { margin-bottom:4px; color:var(--gold); font-size:var(--text-xl); }
+.memory-profile span { color:var(--ivory-dim); font-size:var(--text-xs); letter-spacing:.1em; text-transform:uppercase; }
+.memory-feature blockquote { margin:0; font-family:var(--display); font-size:clamp(1.5rem,3vw,2.4rem); line-height:1.45; }
+.ticker { overflow:hidden; background:var(--gold); color:var(--midnight); }
+.ticker__track { display:flex; width:max-content; padding:19px 0; animation:tickerMove 28s linear infinite; }
+.ticker:hover .ticker__track { animation-play-state:paused; }
+.ticker__track span { white-space:nowrap; font-size:var(--text-sm); font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+.ticker__track span::after { margin:0 28px; content:"◆"; }
+.memory-mosaic { columns:3 270px; column-gap:16px; }
+.memory-bubble { display:inline-block; width:100%; margin:0 0 16px; padding:28px; break-inside:avoid; border-radius:28px 6px 28px 28px; background:var(--obsidian); color:var(--ivory); }
+.memory-bubble:nth-child(3n+2){background:var(--velvet);border-radius:6px 28px 28px 28px}.memory-bubble:nth-child(4n){background:#33221e}.memory-bubble:nth-child(5n){border:1px solid var(--gold)}
+.memory-bubble p { margin-bottom:18px; font-family:var(--accent); font-size:var(--text-xl); font-style:italic; line-height:1.35; }
+.memory-bubble span { color:var(--gold-light); font-size:var(--text-xs); letter-spacing:.12em; text-transform:uppercase; }
+@media(max-width:720px){
+  .memory-feature,.memory-feature:nth-child(even){grid-template-columns:1fr;text-align:center}
+  .memory-feature:nth-child(even) .memory-profile{grid-column:auto;grid-row:auto}
+  .memory-mosaic{columns:1}
+}
+
+/* Tablet */
+@media(max-width:1024px){
+  .memory-feature { grid-template-columns:180px 1fr; gap:36px; padding:clamp(28px,5vw,56px); }
+  .memory-feature:nth-child(even) { grid-template-columns:1fr 180px; }
+  .memory-profile__image { width:130px; height:130px; }
+  .memory-feature blockquote { font-size:clamp(1.3rem,3vw,2rem); }
+  .memory-mosaic { columns:2 240px; }
+  .memories-hero h1 { font-size:clamp(2.8rem,7vw,6rem); }
+}
+
+/* Large phones */
+@media(max-width:768px){
+  .memory-feature,.memory-feature:nth-child(even) { grid-template-columns:1fr; gap:24px; padding:28px 20px; min-height:auto; text-align:center; }
+  .memory-feature:nth-child(even) .memory-profile { grid-column:auto; grid-row:auto; }
+  .memory-profile__image { width:120px; height:120px; }
+  .memory-feature blockquote { font-size:clamp(1.2rem,4vw,1.7rem); }
+  .memory-feature__mark { font-size:9rem; top:-28px; right:16px; }
+  .memory-mosaic { columns:1; }
+  .memory-bubble { padding:20px; border-radius:20px 4px 20px 20px; }
+  .memory-bubble p { font-size:var(--text-lg); }
+  .memories-hero h1 { font-size:clamp(2.2rem,8vw,4rem); }
+  .ticker__track span { font-size:0.7rem; }
+}
+
+/* Small phones */
+@media(max-width:480px){
+  .memory-feature { padding:20px 14px; gap:16px; }
+  .memory-profile__image { width:100px; height:100px; }
+  .memory-feature blockquote { font-size:clamp(1.1rem,4.5vw,1.4rem); }
+  .memory-bubble { padding:16px; }
+  .memory-bubble p { font-size:1rem; margin-bottom:10px; }
+  .memory-list { gap:16px; }
+}

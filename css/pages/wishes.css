@@ -1,0 +1,81 @@
+.wish-form-section { background:radial-gradient(circle at 20% 30%,rgba(30,10,46,.7),transparent 38%),var(--midnight); }
+.wish-form-shell { max-width:780px; margin:auto; padding:clamp(34px,7vw,76px); border:1px solid rgba(201,168,76,.22); border-radius:var(--radius-lg); background:rgba(18,18,26,.88); box-shadow:0 30px 100px rgba(0,0,0,.3); }
+.wish-form-shell h2 { margin-bottom:12px; font-size:var(--text-4xl); text-align:center; }
+.wish-form-shell>p { margin-bottom:48px; color:var(--ivory-dim); text-align:center; }
+.field textarea { min-height:150px; resize:vertical; }
+.wish-form-shell .field input:focus,
+.wish-form-shell .field select:focus,
+.wish-form-shell .field textarea:focus { box-shadow:0 8px 12px -12px var(--gold); }
+.wish-form-shell .field input::placeholder,
+.wish-form-shell .field textarea::placeholder { opacity:.5; transition:opacity .3s; }
+.wish-form-shell .field input:focus::placeholder,
+.wish-form-shell .field textarea:focus::placeholder { opacity:0; }
+.wish-wall-container { width:min(100% - (var(--page-pad) * 2),1480px); }
+.file-field input { padding:14px; border:1px dashed rgba(201,168,76,.4); border-radius:var(--radius-md); }
+.file-field input::file-selector-button { margin-right:18px; padding:10px 16px; border:0; border-radius:var(--radius-pill); background:var(--gold); color:var(--midnight); font:500 var(--text-xs) var(--body); letter-spacing:.1em; text-transform:uppercase; }
+.wish-submit { width:100%; min-height:62px; border:0; border-radius:var(--radius-sm); background:var(--gold); color:var(--midnight); font-family:var(--display); font-size:var(--text-xl); transition:background .3s,box-shadow .3s,transform .3s; }
+.wish-submit:hover { background:var(--gold-light); box-shadow:0 0 35px var(--glow); transform:translateY(-2px); }
+.wish-counter { margin: -8px 0 28px; color: var(--gold); font-family: var(--accent); font-size: var(--text-lg); font-style: italic; letter-spacing: .04em; text-align: center; }
+.wish-wall { columns:3 280px; column-gap:16px; perspective:1000px; min-height: 120px; }
+.wish-empty { margin: 0; padding: 48px 24px; color: var(--ivory-dim); font-family: var(--accent); font-size: var(--text-xl); font-style: italic; text-align: center; column-span: all; }
+.wish-success { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 48px 24px; text-align: center; }
+.wish-success__check { display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; background: var(--gold); color: var(--midnight); font-size: 2.2rem; font-weight: 700; box-shadow: 0 0 40px var(--glow); }
+.wish-success p { margin: 0; color: var(--ivory); font-family: var(--accent); font-size: var(--text-xl); font-style: italic; line-height: 1.6; }
+.wish-card { display:inline-block; width:100%; margin:0 0 16px; padding:30px; break-inside:avoid; border:1px solid rgba(201,168,76,.1); border-radius:var(--radius-md); background:var(--obsidian); transform-style:preserve-3d; }
+.wish-card:nth-child(3n+2){background:var(--velvet)}.wish-card:nth-child(3n){background:#241921}
+.wish-card--husband-feature { display:block; column-span:all; width:min(100%,1420px); margin:0 auto 24px; padding:clamp(24px,4vw,38px); border-color:rgba(201,168,76,.38); background:linear-gradient(135deg,rgba(201,168,76,.16),rgba(18,18,26,.96) 42%,rgba(232,160,191,.12)); box-shadow:0 28px 90px rgba(0,0,0,.35); }
+.wish-card--husband-feature .wish-card__head { margin-bottom:16px; }
+.wish-card--husband-feature h3 { font-size:clamp(1.25rem,2.4vw,1.8rem); }
+.wish-card--husband-feature p { max-width:1320px; font-size:clamp(1.08rem,1.7vw,1.45rem); line-height:1.32; }
+.wish-card__head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px; }
+.wish-card h3 { margin:0; color:var(--gold-light); font-size:var(--text-lg); }
+.wish-badge { padding:4px 10px; border:1px solid rgba(232,160,191,.35); border-radius:var(--radius-pill); color:var(--blush); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+.wish-card p { margin:0; color:var(--ivory-dim); font-family:var(--accent); font-size:var(--text-xl); font-style:italic; line-height:1.35; }
+.wish-gold-highlight { color:var(--gold-light); }
+@media(max-width:620px){.wish-wall{columns:1}}
+
+.wish-delete-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--gold);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--body);
+  cursor: pointer;
+  transition: color 200ms ease, transform 200ms ease;
+}
+.wish-delete-btn:hover {
+  color: var(--gold-light);
+  transform: scale(1.2);
+}
+
+/* Tablet */
+@media(max-width:1024px){
+  .wish-wall { columns:2 260px; }
+  .wish-form-shell { padding:clamp(28px,6vw,56px) clamp(20px,5vw,48px); }
+}
+
+/* Large phones */
+@media(max-width:768px){
+  .wish-wall { columns:1; }
+  .wish-form-shell { padding:28px 20px; border-radius:var(--radius-md); }
+  .wish-form-shell h2 { font-size:clamp(1.8rem,6vw,2.4rem); }
+  .wish-card { padding:22px 18px; }
+  .wish-card--husband-feature { padding:22px 18px; }
+  .wish-card p { font-size:var(--text-lg); }
+  .wish-card--husband-feature p { font-size:var(--text-lg); }
+  .wish-card h3 { font-size:var(--text-base); }
+  .wish-card--husband-feature h3 { font-size:var(--text-xl); }
+}
+
+/* Small phones */
+@media(max-width:480px){
+  .wish-form-shell { padding:20px 14px; }
+  .wish-submit { font-size:0.95rem; min-height:50px; }
+  .wish-card { padding:18px 14px; }
+  .wish-badge { font-size:9px; }
+}

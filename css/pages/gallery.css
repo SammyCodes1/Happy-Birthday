@@ -1,0 +1,73 @@
+.gallery-hero { min-height:72svh; background:var(--midnight); }
+.gallery-hero__rule { width:min(580px,100%); height:1px; margin-top:36px; background:var(--gold); transform-origin:center; }
+.gallery-hero h1 { font-size:var(--text-hero); }
+.gallery-hero p { color:var(--gold); font-family:var(--accent); font-size:var(--text-2xl); font-style:italic; }
+.bento { display:grid; grid-auto-rows:180px; grid-template-columns:repeat(4,1fr); gap:14px; }
+.bento__item { position:relative; overflow:hidden; border:1px solid transparent; border-radius:var(--radius-md); background:linear-gradient(135deg,var(--velvet),#100b17); cursor:pointer; transition:border-color .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1); }
+.bento__item:nth-child(2n){background:linear-gradient(135deg,#1a0a1e,#25151c)}.bento__item:nth-child(3n){background:linear-gradient(135deg,#0a1a1e,#12121a)}.bento__item:nth-child(4n){background:linear-gradient(135deg,#1a1a0a,#1e1018)}
+.bento__item:nth-child(1),.bento__item:nth-child(7){grid-column:span 2;grid-row:span 2}.bento__item:nth-child(3),.bento__item:nth-child(10){grid-row:span 2}.bento__item:nth-child(5),.bento__item:nth-child(12){grid-column:span 2}
+.bento__item::before { position:absolute; z-index:1; inset:0; background:radial-gradient(circle at 70% 25%,rgba(232,160,191,.17),transparent 25%),linear-gradient(to top,rgba(10,10,15,.88),transparent); content:""; transition:transform .5s; }
+.bento__item img { position:absolute; z-index:0; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .5s cubic-bezier(.4,0,.2,1); }
+.bento__item:hover { border-color:var(--gold); box-shadow:inset 0 0 0 1px var(--gold); transform:scale(1.05); z-index:2; }
+.bento__item:hover::before { transform:scale(1.05); }
+.bento__item:hover img { transform:scale(1.05); }
+.bento__caption { position:absolute; z-index:2; right:20px; bottom:16px; left:20px; color:var(--ivory); font-family:var(--accent); font-size:var(--text-xl); font-style:italic; opacity:0; transform:translateY(10px); transition:.35s; }
+.bento__item:hover .bento__caption { opacity:1; transform:none; }
+.polaroids { display:flex; justify-content:center; gap:clamp(12px,4vw,54px); padding:40px 0 70px; }
+.polaroid { width:min(30%,340px); padding:14px 14px 28px; background:#f3eee5; color:#231f1a; box-shadow:0 15px 45px rgba(0,0,0,.35); transition:transform .4s,box-shadow .4s; }
+.polaroid:nth-child(1){transform:rotate(-3deg)}.polaroid:nth-child(2){transform:translateY(26px) rotate(1deg)}.polaroid:nth-child(3){transform:rotate(-1.5deg)}
+.polaroid:hover { transform:translateY(-10px) rotate(0); box-shadow:0 25px 65px rgba(0,0,0,.55); }
+.polaroid__image { display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; background:linear-gradient(145deg,#34223a,#16151c); }
+.polaroid p { margin:18px 6px 0; font-family:"Caveat",cursive; font-size:1.65rem; line-height:1.1; }
+.lightbox { position:fixed; z-index:10020; inset:0; display:flex; visibility:hidden; align-items:center; justify-content:center; padding:30px; background:rgba(6,6,9,.94); backdrop-filter:blur(18px); opacity:0; transition:opacity .3s cubic-bezier(.4,0,.2,1),visibility .3s; }
+.lightbox.is-open { visibility:visible; opacity:1; }
+.lightbox__figure { width:min(900px,82vw); margin:0; text-align:center; }
+.lightbox__visual { display:block; width:100%; height:min(70vh,680px); object-fit:contain; border:1px solid var(--gold); border-radius:var(--radius-md); background:var(--obsidian); box-shadow:0 0 70px rgba(201,168,76,.12); filter:none; }
+.lightbox figcaption { margin-top:18px; color:var(--gold-light); font-family:var(--accent); font-size:var(--text-2xl); font-style:italic; }
+.lightbox button { position:absolute; border:1px solid rgba(201,168,76,.5); border-radius:50%; background:rgba(10,10,15,.7); color:var(--gold); }
+.lightbox__close{top:24px;right:24px;width:46px;height:46px}.lightbox__prev,.lightbox__next{top:50%;width:54px;height:54px;font-size:1.5rem}.lightbox__prev{left:24px}.lightbox__next{right:24px}
+@media(max-width:760px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.bento__item:nth-child(n){grid-column:span 1;grid-row:span 2}.bento__item:nth-child(1),.bento__item:nth-child(7){grid-column:span 2}.bento__caption{opacity:1;transform:none}.polaroids{align-items:center;flex-direction:column}.polaroid{width:min(86%,340px)}.lightbox__prev{left:8px}.lightbox__next{right:8px}}
+
+/* Tablet */
+@media(max-width:1024px){
+  .bento { grid-template-columns:repeat(3,1fr); grid-auto-rows:160px; }
+  .polaroid { width:min(40%,300px); }
+  .polaroid p { font-size:1.4rem; }
+  /* Reduce rotation on tablets to avoid edge clipping */
+  .polaroid:nth-child(1){transform:rotate(-1.5deg)}
+  .polaroid:nth-child(2){transform:translateY(14px) rotate(0.5deg)}
+  .polaroid:nth-child(3){transform:rotate(-0.8deg)}
+}
+
+/* Large phones */
+@media(max-width:768px){
+  .bento { grid-template-columns:1fr 1fr; grid-auto-rows:140px; gap:10px; }
+  .bento__caption { opacity:1; transform:none; font-size:var(--text-base); }
+  .gallery-hero p { font-size:var(--text-xl); }
+  .lightbox__figure { width:min(900px,96vw); }
+  .lightbox__visual { height:min(60vh,500px); }
+  .lightbox { padding:16px; }
+  /* Remove rotation on phones — prevents horizontal overflow */
+  .polaroids { flex-direction:column; align-items:center; gap:28px; padding:20px 0 50px; }
+  .polaroid { width:min(82%,340px); }
+  .polaroid:nth-child(1),
+  .polaroid:nth-child(2),
+  .polaroid:nth-child(3) { transform:none; }
+  .polaroid:hover { transform:translateY(-6px); }
+  .polaroid p { font-size:1.5rem; }
+}
+
+/* Small phones */
+@media(max-width:480px){
+  .bento { grid-template-columns:1fr; grid-auto-rows:200px; }
+  .bento__item:nth-child(n) { grid-column:span 1; grid-row:span 1; }
+  .polaroids { gap:20px; }
+  .polaroid { width:min(92%,340px); padding:10px 10px 22px; }
+  .polaroid:nth-child(1),
+  .polaroid:nth-child(2),
+  .polaroid:nth-child(3) { transform:none; }
+  .polaroid p { font-size:1.3rem; margin-top:12px; }
+  .lightbox__close { top:12px; right:12px; width:40px; height:40px; }
+  .lightbox__prev { left:4px; }
+  .lightbox__next { right:4px; }
+}

@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Leave a birthday wish for Omhonria Pauline."><title>Leave Your Wish — Omhonria Pauline at 30</title><script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script><script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/animations.css"><link rel="stylesheet" href="css/nav.css"><link rel="stylesheet" href="css/pages/wishes.css"><script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script></head><body>
+<div data-nav-sentinel></div><div class="page-transition"></div><nav class="site-nav"><div class="nav__inner"><a class="monogram" href="index.html" aria-label="Home"><span>Omhonria Pauline</span></a><div class="nav__links"><a class="nav__link" href="index.html">Home</a><a class="nav__link" href="story.html">Story</a><a class="nav__link" href="gallery.html">Gallery</a><a class="nav__link active" href="wishes.html">Wishes</a><a class="nav__link" href="birthday.html">Birthday</a></div><div class="countdown" data-countdown><span class="countdown__unit"><b class="countdown__number" data-days>00</b><small class="countdown__label">Days</small></span><span class="countdown__unit"><b class="countdown__number" data-hours>00</b><small class="countdown__label">Hrs</small></span><span class="countdown__unit"><b class="countdown__number" data-minutes>00</b><small class="countdown__label">Min</small></span></div><button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button></div></nav><aside class="mobile-menu"><div class="mobile-menu__links"><a class="mobile-menu__link" style="--i:0" href="index.html">Home</a><a class="mobile-menu__link" style="--i:1" href="story.html">Story</a><a class="mobile-menu__link" style="--i:2" href="gallery.html">Gallery</a><a class="mobile-menu__link" style="--i:4" href="wishes.html">Wishes</a><a class="mobile-menu__link" style="--i:5" href="birthday.html">Birthday</a></div></aside>
+<main><header class="page-hero" style="background: linear-gradient(to bottom, rgba(10,10,15,0.45) 0%, rgba(10,10,15,0.72) 60%, rgba(10,10,15,0.92) 100%), url('assets/images/timeline-2026.jpg') center 20% / cover no-repeat;"><div class="page-hero__content"><span class="eyebrow" data-hero-reveal>A page of your own</span><h1 data-hero-reveal>Leave Your <em>Wish</em></h1><p data-hero-reveal>Write something for Omhonria Pauline. She'll read every word.</p></div></header>
+<section class="section"><div class="container wish-wall-container"><span class="section-label" data-reveal>With all our love</span><h2 class="section-title" data-reveal>The Wish <em>Wall</em></h2>
+  <p id="wish-counter" class="wish-counter" data-reveal>0 wishes and counting</p>
+<div class="wish-wall" id="wishWall" data-flip-grid>
+  <p class="wish-empty">Loading wishes...</p>
+</div></div></section>
+
+<section class="section wish-form-section">
+  <div class="container">
+    <span class="section-label" data-reveal>Leave your mark</span>
+    <h2 class="section-title" data-reveal>Send a <em>Wish</em></h2>
+    <div class="wish-form-shell" data-reveal>
+      <form class="editorial-form" id="wishForm" novalidate>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 32px;">
+          <div class="field">
+            <label for="wf-name">Your Name *</label>
+            <input type="text" id="wf-name" name="name" placeholder="e.g. Amara Johnson" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="wf-relation">Your Relationship</label>
+            <select id="wf-relation" name="relation">
+              <option value="" disabled selected>— Select one —</option>
+              <option>Family</option>
+              <option>Friend</option>
+              <option>Colleague</option>
+              <option>Leader</option>
+              <option>Church Member</option>
+              <option>Course Mate</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr; gap:0 32px;">
+          <div class="field">
+            <label for="wf-emoji">Pick a vibe ✨</label>
+            <select id="wf-emoji" name="emoji">
+              <option value="🎂">🎂 Birthday Cake</option>
+              <option value="🌸">🌸 Blossom</option>
+              <option value="🥂">🥂 Cheers</option>
+              <option value="🙏">🙏 Grateful</option>
+              <option value="💛">💛 Golden Love</option>
+              <option value="🎉">🎉 Party</option>
+              <option value="🕊️">🕊️ Peace</option>
+              <option value="🌟">🌟 Shining Star</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="wf-message">Your Birthday Wish *</label>
+          <textarea id="wf-message" name="message" placeholder="Write something beautiful for Omhonria Pauline…" required rows="5"></textarea>
+        </div>
+
+        <div id="wf-error" style="display:none; margin-bottom:20px; color:var(--blush); font-size:var(--text-sm); letter-spacing:.05em;"></div>
+
+        <button type="submit" class="wish-submit" id="wf-submit">
+          <span id="wf-btn-text">Send My Wish ✦</span>
+        </button>
+
+      </form>
+
+      <div id="wish-success" class="wish-success">
+        <div class="wish-success__check" aria-hidden="true">✓</div>
+        <p>Your wish has been sent!  Omhonria Pauline will love this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+(function () {
+  const firebaseConfig = {
+    apiKey: "AIzaSyDgrVJyduLGrTdDAG0ASZ44E5x8qfMI0Vs",
+    authDomain: "omhonria-pauline-birthday.firebaseapp.com",
+    projectId: "omhonria-pauline-birthday",
+    storageBucket: "omhonria-pauline-birthday.firebasestorage.app",
+    messagingSenderId: "301325456249",
+    appId: "1:301325456249:web:9d79420b73e1a80809d5a8"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  db.enablePersistence({ synchronizeTabs: true }).catch(function () {});
+
+  const form = document.getElementById('wishForm');
+  const wall = document.getElementById('wishWall');
+  const counter = document.getElementById('wish-counter');
+  const errorBox = document.getElementById('wf-error');
+  const btnText = document.getElementById('wf-btn-text');
+  const submitBtn = document.getElementById('wf-submit');
+  const successEl = document.getElementById('wish-success');
+
+  let knownIds = new Set();
+  let hasReceivedSnapshot = false;
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function escRegExp(str) {
+    return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function isPastorEmmanuelOmhonria(name) {
+    return (name || '').trim().toLowerCase() === 'pastor emmanuel omhonria';
+  }
+
+  function paintGoldPhrases(wish, shouldPaint) {
+    let html = escHtml(wish);
+
+    if (!shouldPaint) return html;
+
+    [
+      'To the wife of my youth, my answered prayer,',
+      'You have been my friend, my encourager, my prayer partner, and a faithful pillar in our home and the work God has committed into our hands.',
+      'ou have been my friend, my encourager, my prayer partner, and a faithful pillar in our home and the work God has committed into our hands.',
+      'Happy Birthday, my Queen.',
+      'Thank you for being you.',
+      'Your loving husband ❤️\nEBUNOLUWASIMI'
+    ].forEach(function (phrase) {
+      const pattern = escRegExp(escHtml(phrase)).replace(/\s+/g, '\\s+');
+      html = html.replace(new RegExp(pattern, 'gi'), '<span class="wish-gold-highlight">$&</span>');
+    });
+
+    return html;
+  }
+
+  function buildCard(data) {
+    const card = document.createElement('div');
+    card.className = 'wish-card';
+    card.style.position = 'relative';
+
+    const isHusbandWish = isPastorEmmanuelOmhonria(data.name);
+    const relationship = isHusbandWish ? 'Husband' : data.relationship || 'Guest';
+
+    if (isHusbandWish) {
+      card.classList.add('wish-card--husband-feature');
+    }
+
+    const wishHtml = paintGoldPhrases(data.wish, isHusbandWish);
+
+    card.innerHTML = `
+      <div class="wish-card__head">
+        <h3>${escHtml(data.name)}</h3>
+        <span class="wish-badge">${escHtml(relationship)}</span>
+      </div>
+      <p style="white-space: pre-wrap;">"${wishHtml}"</p>
+    `;
+
+    return card;
+  }
+
+  function animateNewCard(card) {
+    if (typeof gsap !== 'undefined') {
+      gsap.from(card, {
+        y: 48,
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.8,
+        ease: 'power2.out',
+        onComplete: function () {
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    } else {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(48px) scale(0.96)';
+      card.style.transition = 'opacity 600ms ease, transform 600ms ease';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0) scale(1)';
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
+    }
+  }
+
+  function getTimestamp(doc) {
+    const ts = doc.timestamp;
+    if (!ts) return 0;
+    if (typeof ts.toMillis === 'function') return ts.toMillis();
+    if (ts.seconds) return ts.seconds * 1000;
+    return 0;
+  }
+
+  function getWishRank(name) {
+    const normalized = (name || '').trim().toLowerCase();
+    if (normalized === 'pastor emmanuel omhonria') return 0;
+    if (normalized === 'praise odine') return 1;
+    if (normalized === 'elizabeth') return 2;
+    if (normalized === 'stephanie') return 3;
+    return 4;
+  }
+
+  function sortWishes(docs) {
+    return docs.slice().sort(function (a, b) {
+      const rankDiff = getWishRank(a.name) - getWishRank(b.name);
+      if (rankDiff !== 0) return rankDiff;
+      return getTimestamp(a) - getTimestamp(b);
+    });
+  }
+
+  function renderWall(snapshot) {
+    const docs = sortWishes(
+      snapshot.docs.map(function (doc) {
+        return { id: doc.id, ...doc.data() };
+      })
+    );
+
+    const newIds = new Set(docs.map((d) => d.id));
+    const isInitialLoad = !hasReceivedSnapshot;
+    hasReceivedSnapshot = true;
+
+    counter.textContent = docs.length + ' wishes and counting ';
+
+    wall.innerHTML = '';
+
+    if (!docs.length) {
+      knownIds = new Set();
+      const empty = document.createElement('p');
+      empty.className = 'wish-empty';
+      empty.textContent = 'Be the first to leave a wish for Omhonria Pauline ';
+      wall.appendChild(empty);
+      return;
+    }
+
+    docs.forEach((doc) => {
+      const card = buildCard({
+        name: doc.name || 'Anonymous',
+        relationship: doc.relationship || 'Guest',
+        wish: doc.wish || ''
+      });
+      card.dataset.id = doc.id;
+      wall.appendChild(card);
+
+      const isNew = !knownIds.has(doc.id);
+      if (isNew && !isInitialLoad) {
+        animateNewCard(card);
+      }
+    });
+
+    knownIds = newIds;
+  }
+
+  db.collection('wishes')
+    .orderBy('timestamp', 'desc')
+    .limit(50)
+    .onSnapshot(renderWall, function () {
+      showError('Something went wrong, please try again');
+    });
+
+  function showError(msg) {
+    errorBox.textContent = msg;
+    errorBox.style.display = 'block';
+  }
+
+  function hideError() {
+    errorBox.style.display = 'none';
+    errorBox.textContent = '';
+  }
+
+  function showSuccess() {
+    form.style.transition = 'opacity 0.6s ease';
+    form.style.opacity = '0';
+
+    setTimeout(function () {
+      form.style.display = 'none';
+      successEl.style.display = 'flex';
+
+      if (typeof gsap !== 'undefined') {
+        gsap.from('.wish-success__check', {
+          scale: 0,
+          rotation: -45,
+          duration: 0.6,
+          ease: 'back.out(2)'
+        });
+      }
+    }, 600);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideError();
+
+    const name = form.elements['name'].value.trim();
+    const message = form.elements['message'].value.trim();
+
+    if (!name) {
+      showError('Please enter your name.');
+      return;
+    }
+    if (!message) {
+      showError('Please write a birthday wish.');
+      return;
+    }
+
+    btnText.textContent = 'Sending... ✨';
+    submitBtn.disabled = true;
+
+    db.collection('wishes').add({
+      name: name,
+      relationship: form.elements['relation'].value || 'Guest',
+      wish: message,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+      .then(function () {
+        form.reset();
+        showSuccess();
+      })
+      .catch(function () {
+        showError('Something went wrong, please try again');
+        btnText.textContent = 'Send My Wish ✦';
+        submitBtn.disabled = false;
+      });
+  });
+})();
+});
+</script>
+<section class="section" style="padding-top: 0; padding-bottom: 4rem; text-align: center;">
+  <div class="container">
+    <a class="button" href="birthday.html" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Next: Go to Birthday Page ➔</a>
+  </div>
+</section>
+</main>
+<footer class="site-footer footer--center"><div class="footer__monogram">OP.</div><div class="footer__nav"><a href="index.html">Home</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a></div><hr class="footer__rule"><p>Celebrating God's faithfulness through the life of Omhonria Pauline</p></footer><script defer src="js/cursor.js"></script><script defer src="js/nav.js"></script><script defer src="js/transitions.js"></script><script defer src="js/countdown.js"></script><script defer src="js/animations.js"></script></body></html>
