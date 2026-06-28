@@ -109,6 +109,9 @@
     const visual = modal.querySelector("[data-lightbox-visual]");
     let current = 0;
     let open = false;
+    let closing = false;
+    let historyPushed = false;
+    let ignoreNextPop = false;
 
     const render = () => {
       const item = items[current];
@@ -122,17 +125,30 @@
       current = index;
       render();
       open = true;
+      closing = false;
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+      if (!historyPushed && window.history?.pushState) {
+        window.history.pushState({ galleryLightbox: true }, "", window.location.href);
+        historyPushed = true;
+      }
       if (hasGSAP && !reducedMotion) {
         gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" });
         gsap.fromTo(figure, { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "power2.out" });
       }
     };
-    const hide = () => {
+    const hide = (fromHistory = false) => {
+      if (!open || closing) return;
+      if (historyPushed && !fromHistory) {
+        historyPushed = false;
+        ignoreNextPop = true;
+        window.history.back();
+      }
+      closing = true;
       const finish = () => {
         open = false;
+        closing = false;
         modal.classList.remove("is-open");
         modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
@@ -162,6 +178,16 @@
       if (event.key === "Escape") hide();
       if (event.key === "ArrowLeft") move(-1);
       if (event.key === "ArrowRight") move(1);
+    });
+    window.addEventListener("popstate", () => {
+      if (ignoreNextPop) {
+        ignoreNextPop = false;
+        return;
+      }
+      if (open) {
+        historyPushed = false;
+        hide(true);
+      }
     });
   };
 

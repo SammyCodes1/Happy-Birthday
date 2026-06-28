@@ -78,6 +78,7 @@
 .stat { min-height: 360px; padding: 64px 48px; text-align: center; }
 .stat + .stat { border-left: 1px solid var(--gold); }
 .stat__number { display: block; color: var(--gold); font-family: var(--accent); font-size: var(--text-6xl); line-height: 1; }
+.stat__number--numeric { font-family: var(--body); font-weight: 500; font-variant-numeric: tabular-nums; }
 .stat__label { display: block; margin: 18px 0 16px; color: var(--ivory-dim); font-size: var(--text-sm); letter-spacing: .16em; text-transform: uppercase; }
 .stat p { max-width: 270px; margin: 0 auto; color: var(--ivory-dim); }
 .preview-heading { margin-bottom: 56px; text-align: center; }
