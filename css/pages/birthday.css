@@ -11,13 +11,13 @@
 
 .birthday-hero__bg {
   position: absolute;
-  top: -20%;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 140%;
+  height: 100%;
   background: 
     linear-gradient(to bottom, rgba(14, 11, 22, 0.4), rgba(14, 11, 22, 0.8)),
-    url("../../assets/images/header2.jpg") center top / cover no-repeat;
+    url("../../assets/images/header2.jpg") center 18% / cover no-repeat;
   z-index: 1;
 }
 
@@ -47,6 +47,9 @@
 /* Large phones */
 @media(max-width:768px){
   .birthday-hero { padding:72px var(--page-pad) 56px; min-height:90svh; }
+  .birthday-hero__bg {
+    background-position: center 10%;
+  }
   .birthday-hero h1 { font-size:clamp(2.5rem,10vw,5rem); margin-bottom:16px; }
   .birthday-hero p { font-size:clamp(1rem,3vw,1.4rem); }
 }
@@ -54,5 +57,8 @@
 /* Small phones */
 @media(max-width:480px){
   .birthday-hero { padding:64px 16px 48px; min-height:85svh; }
+  .birthday-hero__bg {
+    background-position: center top;
+  }
   .birthday-hero h1 { font-size:clamp(2.2rem,11vw,3.5rem); }
 }
