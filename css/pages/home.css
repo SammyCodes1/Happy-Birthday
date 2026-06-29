@@ -251,6 +251,7 @@
 
 @media(max-width:760px) {
   .countdown-landing__timer { grid-template-columns: repeat(3,1fr); }
+  .countdown-landing__timer .countdown__complete { transform: none; }
   .countdown-landing__timer div:nth-child(2) { border-right: 1px solid rgba(201,168,76,.3); }
   .countdown-landing__timer div { padding-inline: 8px; border-bottom: 0; }
 }
