@@ -188,17 +188,22 @@
 .countdown-landing__timer.is-complete {
   display: block;
   max-width: none;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 .countdown-landing__timer .countdown__complete {
   display: block;
+  margin-inline: auto;
   color: var(--gold);
   font-family: var(--display);
-  font-size: clamp(3.2rem,9vw,8rem);
+  font-size: clamp(2.4rem,6vw,5.2rem);
   font-weight: 900;
   line-height: .95;
   letter-spacing: .03em;
   text-align: center;
   text-shadow: 0 0 44px rgba(201,168,76,.28);
+  transform: translateX(-30px);
 }
 .countdown-landing__timer div {
   padding: 18px;

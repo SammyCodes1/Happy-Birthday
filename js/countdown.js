@@ -3,11 +3,15 @@
   if (!widgets.length) return;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const pad = (value) => String(value).padStart(2, "0");
-  const birthdayMessage = "HAPPY BIRTHDAY";
+  const birthdayMessage = "MRS OMHONRIA PAULINE";
 
   const showBirthdayMessage = (widget) => {
     if (widget.classList.contains("is-complete")) return;
     widget.classList.add("is-complete");
+    if (!widget.classList.contains("countdown-landing__timer")) {
+      widget.innerHTML = "";
+      return;
+    }
     widget.innerHTML = `<span class="countdown__complete">${birthdayMessage}</span>`;
   };
 
