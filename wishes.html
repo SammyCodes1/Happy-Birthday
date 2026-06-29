@@ -271,7 +271,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
   db.collection('wishes')
     .orderBy('timestamp', 'desc')
-    .limit(50)
     .onSnapshot(renderWall, function () {
       showError('Something went wrong, please try again');
     });
